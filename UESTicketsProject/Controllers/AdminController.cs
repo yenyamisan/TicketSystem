@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UESTicketsProject.Data.Entities;
+using UESTicketsProject.Data.Models;
 using UESTicketsProject.Data.Repositories.Interfaces;
 
 namespace UESTicketsProject.Controllers
@@ -12,10 +13,12 @@ namespace UESTicketsProject.Controllers
     {
         private IRolRepository _rolRepository;
         private IDepartamentoRepository _departamentoRepository;
-        public AdminController(IRolRepository rolRepository, IDepartamentoRepository departamentoRepository)
+        private IUsuarioRepository _usurioRepository;
+        public AdminController(IRolRepository rolRepository, IDepartamentoRepository departamentoRepository,IUsuarioRepository usurioRepository)
         {
             _rolRepository = rolRepository;
             _departamentoRepository = departamentoRepository;
+            _usurioRepository = usurioRepository;
         }
         public ActionResult AgregarRol()
         {
@@ -53,6 +56,27 @@ namespace UESTicketsProject.Controllers
             _departamentoRepository.Save(model);
             return RedirectToAction("ListarDepartamentos");
 
+        }
+
+        public ActionResult ListarUsuarios()
+        {
+            var model = _usurioRepository.GetAll().ToList();
+            return View(model);
+        }
+
+        public ActionResult AgregarNuevoUsuario()
+        {
+            var model = new NuevoUsuario {
+                Departamentos = _departamentoRepository.GetAll().ToList(),
+                Roles = _rolRepository.GetAll().ToList()
+            };
+            return View(model);
+        }
+
+        public ActionResult CrearUsuario(NuevoUsuario model)
+        {
+            _usurioRepository.Save(model.Usuario);
+            return RedirectToAction("ListarUsuarios");
         }
     }
 }

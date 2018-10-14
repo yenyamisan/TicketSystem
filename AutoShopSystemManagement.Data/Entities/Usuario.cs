@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace UESTicketsProject.Data.Entities
 {
+    [Table("Usuario")]
     public class Usuario:EntityBase
     {
         public int DepartamentoId { get; set; }

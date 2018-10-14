@@ -346,6 +346,8 @@
     <Content Include="Views\Admin\AgregarRol.cshtml" />
     <Content Include="Views\Admin\ListarDepartamentos.cshtml" />
     <Content Include="Views\Admin\ListarRoles.cshtml" />
+    <Content Include="Views\Admin\ListarUsuarios.cshtml" />
+    <Content Include="Views\Admin\AgregarNuevoUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

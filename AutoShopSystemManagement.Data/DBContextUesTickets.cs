@@ -13,6 +13,6 @@ namespace UESTicketsProject.Data
 
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Departamento> Departamentos { get; set; }
-        
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
